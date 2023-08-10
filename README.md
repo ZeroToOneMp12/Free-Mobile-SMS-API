@@ -2,13 +2,13 @@
 
 # Surveillance d'état des appareils avec envoi de SMS
 
-Ce script surveille l'état de plusieurs appareils en utilisant des requêtes telnet et envoie des SMS via le service FreeboxSMS pour informer de tout changement d'état (en ligne ou hors ligne) des appareils surveillés.
+Ce script en PHP permet de surveiller l'état de plusieurs appareils en utilisant des requêtes Ping et envoie des SMS via le service FreeboxSMS pour informer de tout changement d'état (en ligne ou hors ligne) des appareils surveillés.
 
 ## Configuration
 
-1. Assurez-vous d'avoir les informations d'authentification FreeboxSMS (USER et PASS) correctes dans le script.
+1. Assurez-vous d'avoir les informations d'authentification FreeboxSMS (`USER` et `PASS`) correctes dans le script.
 
-2. Ajoutez les appareils que vous souhaitez surveiller à la liste `$devices` dans le script.
+2. Ajoutez les appareils que vous souhaitez surveiller à la liste `$devices` dans le script. Chaque appareil doit être défini avec un nom, une adresse IP et éventuellement un numéro de port.
 
 3. Le fichier de cache `$cacheFile` stocke l'état précédent des appareils. Assurez-vous que le script a la permission d'écrire dans le dossier contenant ce fichier.
 
@@ -22,7 +22,9 @@ Ce script surveille l'état de plusieurs appareils en utilisant des requêtes te
 
 ## Dépendances
 
-Le script utilise la fonction `fsockopen` pour vérifier la connectivité avec les appareils. Assurez-vous que cette fonction est activée sur votre serveur.
+- Le script utilise la commande `ping` pour vérifier la connectivité avec les appareils. Assurez-vous que cette commande est disponible sur votre système.
+
+- Le script utilise la fonction `file_get_contents` pour envoyer des requêtes HTTP. Assurez-vous que cette fonction est activée sur votre serveur et qu'il est autorisé d'accéder à l'API de FreeboxSMS.
 
 ## Avertissements
 
